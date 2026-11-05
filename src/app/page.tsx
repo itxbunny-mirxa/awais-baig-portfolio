@@ -2,21 +2,15 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowRight,
   CheckCircle2,
   Sparkles,
-  ShieldCheck,
   Search,
   Sliders,
-  TrendingUp,
-  Package,
   Layers,
   Clock,
-  ExternalLink,
   ChevronRight,
-  Zap,
   Lock,
   Boxes,
   HelpCircle,

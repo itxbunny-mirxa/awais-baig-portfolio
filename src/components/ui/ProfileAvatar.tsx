@@ -67,6 +67,8 @@ export const ProfileAvatar: React.FC<ProfileAvatarProps> = ({
         <span
           className={`absolute ${indicatorSizes[size]} rounded-full bg-emerald-500 border-2 border-white shadow-xs`}
           title={personalInfo.availability.label}
+          aria-label={personalInfo.availability.label}
+          role="status"
         />
       )}
     </div>

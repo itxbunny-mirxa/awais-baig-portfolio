@@ -9,12 +9,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Clock,
-  Sparkles,
-  FileSpreadsheet,
-  Lock,
-  ChevronRight,
 } from "lucide-react";
-import { workProcessData, personalInfo } from "@/data/portfolioData";
+import { workProcessData } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ParcelDispatchIllustration } from "@/components/illustrations/ParcelDispatchIllustration";
 import { InventoryRackIllustration } from "@/components/illustrations/InventoryRackIllustration";

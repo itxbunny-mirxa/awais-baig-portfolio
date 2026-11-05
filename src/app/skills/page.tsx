@@ -3,19 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Check,
-  Sparkles,
   Wrench,
   Shield,
   Database,
   LayoutGrid,
   CheckCircle2,
   ArrowRight,
-  ChevronRight,
-  ShieldCheck,
-  Search,
-  Sliders,
-  FileSpreadsheet,
 } from "lucide-react";
 import { skillCategoriesData } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";

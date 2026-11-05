@@ -2,18 +2,11 @@ import React from "react";
 import Link from "next/link";
 import {
   Calendar,
-  Award,
   CheckCircle2,
-  TrendingUp,
-  ShieldCheck,
-  Sparkles,
   ArrowRight,
-  Briefcase,
-  ChevronRight,
   Clock,
-  Lock,
 } from "lucide-react";
-import { experienceMilestones, personalInfo } from "@/data/portfolioData";
+import { experienceMilestones } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export default function ExperiencePage() {

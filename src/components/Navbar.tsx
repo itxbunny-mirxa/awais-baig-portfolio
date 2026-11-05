@@ -33,9 +33,11 @@ export const Navbar: React.FC = () => {
   }, []);
 
   // Close mobile menu on route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setMobileMenuOpen(false);
-  }, [pathname]);
+  }
 
   const getRouteIcon = (path: string) => {
     switch (path) {

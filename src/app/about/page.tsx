@@ -3,17 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   GraduationCap,
-  Building,
-  ShieldCheck,
-  Clock,
   CheckCircle2,
   Lock,
-  ArrowRight,
-  Sparkles,
   CalendarDays,
-  FileCheck2,
   ChevronRight,
-  ExternalLink,
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";

@@ -1,25 +1,24 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Mail,
   Send,
-  Clock,
-  MapPin,
-  CheckCircle2,
-  Sparkles,
   Copy,
   Check,
   Globe2,
   Lock,
   ArrowRight,
-  MessageSquare,
 } from "lucide-react";
 import { personalInfo } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { LinkedInIcon, FacebookIcon } from "@/components/ui/SocialIcons";
 
-export default function ContactPage() {
+function ContactFormContent() {
+  const searchParams = useSearchParams();
+  const serviceQuery = searchParams.get("service");
+
   const emailAddress = "awaisbaig138@gmail.com";
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedBrief, setCopiedBrief] = useState(false);
@@ -32,6 +31,13 @@ export default function ContactPage() {
     serviceType: "eBay Store Management",
     message: "",
   });
+
+  // Pre-populate serviceType if provided via query param
+  useEffect(() => {
+    if (serviceQuery) {
+      setFormData((prev) => ({ ...prev, serviceType: serviceQuery }));
+    }
+  }, [serviceQuery]);
 
   // Live Dual Timezone Clock (London & Multan)
   useEffect(() => {
@@ -371,5 +377,13 @@ Sent via Portfolio Brief Generator`;
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#F7F7F2]" />}>
+      <ContactFormContent />
+    </Suspense>
   );
 }

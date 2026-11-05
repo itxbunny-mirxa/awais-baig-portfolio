@@ -85,7 +85,7 @@ export const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const mailto = getMailtoUrl();
-    window.location.href = mailto;
+    window.location.assign(mailto);
     setFormSubmitted(true);
   };
 

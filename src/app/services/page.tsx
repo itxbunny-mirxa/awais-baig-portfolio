@@ -3,26 +3,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Boxes,
-  Store,
-  TrendingUp,
-  FileSpreadsheet,
   Sparkles,
-  Search,
-  PackageCheck,
-  BarChart3,
-  Truck,
   CheckCircle2,
   ArrowRight,
-  ShieldCheck,
-  Sliders,
-  Clock,
-  Layers,
-  ChevronRight,
-  Zap,
 } from "lucide-react";
-import { servicesData, personalInfo } from "@/data/portfolioData";
-import { ServiceItem } from "@/types/portfolio";
+import { servicesData } from "@/data/portfolioData";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export default function ServicesPage() {

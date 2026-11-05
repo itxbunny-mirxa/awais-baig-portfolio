@@ -3,34 +3,18 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ExternalLink,
-  TrendingUp,
-  Layers,
   ArrowRight,
   Info,
-  CheckCircle,
-  FileCheck,
-  Search,
-  Sparkles,
-  SlidersHorizontal,
-  XCircle,
   CheckCircle2,
-  FolderKanban,
-  FileSpreadsheet,
-  Building,
-  Image as ImageIcon,
-  Maximize2,
   Lock,
   ShieldCheck,
 } from "lucide-react";
 import {
   demonstrationProjects,
   selectedClientWork,
-  personalInfo,
 } from "@/data/portfolioData";
-import { DemonstrationProject, ClientProjectPlaceholder } from "@/types/portfolio";
+import { ClientProjectPlaceholder } from "@/types/portfolio";
 import { PageHeader } from "@/components/ui/PageHeader";
-import { DemoProjectModal } from "@/components/DemoProjectModal";
 import { ClientWorkModal } from "@/components/ClientWorkModal";
 import { ListingOptimizationVisual } from "@/components/demonstrations/ListingOptimizationVisual";
 import { ProductResearchVisual } from "@/components/demonstrations/ProductResearchVisual";

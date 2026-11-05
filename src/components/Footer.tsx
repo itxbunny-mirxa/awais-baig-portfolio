@@ -86,6 +86,7 @@ export const Footer: React.FC = () => {
                 href={personalInfo.social.links.email}
                 className="w-10 h-10 rounded-xl bg-[#1F2937] hover:bg-[#6558F5] text-white flex items-center justify-center transition-colors shadow-xs"
                 title="Send Email to awaisbaig138@gmail.com"
+                aria-label="Send Email to awaisbaig138@gmail.com"
               >
                 <Mail className="w-5 h-5" />
               </a>
@@ -96,6 +97,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-[#1F2937] hover:bg-[#1877F2] text-white flex items-center justify-center transition-colors shadow-xs"
                 title="Awais Baig on Facebook"
+                aria-label="Awais Baig on Facebook"
               >
                 <FacebookIcon className="w-5 h-5" />
               </a>
@@ -106,6 +108,7 @@ export const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-[#1F2937] hover:bg-[#0A66C2] text-white flex items-center justify-center transition-colors shadow-xs"
                 title="Awais Baig on LinkedIn"
+                aria-label="Awais Baig on LinkedIn"
               >
                 <LinkedInIcon className="w-5 h-5" />
               </a>
