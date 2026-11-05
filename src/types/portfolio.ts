@@ -47,7 +47,8 @@ export interface PersonalInfo {
       email: string;
       linkedin: string;
       facebook: string;
-      instagram?: string;
+      instagram: string; // Configurable: User to supply handle
+      snapchat: string;  // Configurable: User to supply handle
     };
   };
 }
@@ -147,3 +148,11 @@ export interface FAQItem {
   question: string;
   answer: string;
 }
+
+export interface NavRoute {
+  path: string;
+  label: string;
+  description: string;
+  badge?: string;
+}
+

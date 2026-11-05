@@ -2,89 +2,119 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ArrowUpRight, MessageSquareCode } from "lucide-react";
-import { personalInfo } from "@/data/portfolioData";
+import { usePathname } from "next/navigation";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  Briefcase,
+  Layers,
+  Wrench,
+  GraduationCap,
+  Sparkles,
+  FileText,
+  Mail,
+  Home,
+  User,
+} from "lucide-react";
+import { personalInfo, navigationRoutes } from "@/data/portfolioData";
 
 export const Navbar: React.FC = () => {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      const sections = ["home", "about", "experience", "services", "tools", "skills", "portfolio", "process", "contact"];
-      const scrollPosition = window.scrollY + 120;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      setIsScrolled(window.scrollY > 15);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Services", href: "#services", id: "services" },
-    { label: "Portfolio", href: "#portfolio", id: "portfolio" },
-    { label: "Tools", href: "#tools", id: "tools" },
-    { label: "Experience", href: "#experience", id: "experience" },
-    { label: "Process", href: "#process", id: "process" },
-    { label: "About", href: "#about", id: "about" },
-    { label: "Contact", href: "#contact", id: "contact" },
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  const getRouteIcon = (path: string) => {
+    switch (path) {
+      case "/":
+        return <Home className="w-4 h-4" />;
+      case "/about":
+        return <User className="w-4 h-4" />;
+      case "/services":
+        return <Layers className="w-4 h-4" />;
+      case "/skills":
+        return <Sparkles className="w-4 h-4" />;
+      case "/tools":
+        return <Wrench className="w-4 h-4" />;
+      case "/experience":
+        return <Briefcase className="w-4 h-4" />;
+      case "/portfolio":
+        return <FileText className="w-4 h-4" />;
+      case "/process":
+        return <GraduationCap className="w-4 h-4" />;
+      case "/contact":
+        return <Mail className="w-4 h-4" />;
+      default:
+        return <ArrowUpRight className="w-4 h-4" />;
+    }
+  };
+
+  // Primary desktop navigation links
+  const desktopLinks = [
+    { path: "/", label: "Home" },
+    { path: "/about", label: "About" },
+    { path: "/services", label: "Services" },
+    { path: "/skills", label: "Skills" },
+    { path: "/tools", label: "Tools" },
+    { path: "/experience", label: "Experience" },
+    { path: "/portfolio", label: "Portfolio" },
+    { path: "/process", label: "Process" },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto">
         <nav
-          className={`flex items-center justify-between px-5 sm:px-6 py-2.5 sm:py-3 rounded-full transition-all duration-300 ${
+          className={`flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-full transition-all duration-300 ${
             isScrolled
-              ? "bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-sm shadow-slate-900/5"
-              : "bg-white/75 backdrop-blur-sm border border-slate-200/60"
+              ? "glass-nav-pill shadow-md shadow-[#111827]/5 border-[#E5E5DC]"
+              : "bg-[#F7F7F2]/90 backdrop-blur-md border border-[#E5E5DC]"
           }`}
           aria-label="Main Navigation"
         >
-          {/* Logo */}
+          {/* Logo & Brand Emblem */}
           <Link
-            href="#home"
-            className="flex items-center gap-2 group focus:outline-none"
+            href="/"
+            className="flex items-center gap-2.5 group focus:outline-none shrink-0"
           >
-            <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm tracking-tight group-hover:bg-blue-600 transition-colors">
+            <div className="w-8 h-8 rounded-xl bg-[#111827] text-white flex items-center justify-center font-extrabold text-xs tracking-tight group-hover:bg-[#6558F5] transition-colors shadow-xs">
               AB
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-base tracking-tight text-slate-900 group-hover:text-blue-600 transition-colors">
+              <span className="font-extrabold text-sm sm:text-base tracking-tight text-[#111827] group-hover:text-[#6558F5] transition-colors leading-none">
                 {personalInfo.name.toUpperCase()}
               </span>
-              <span className="text-[10px] text-slate-500 font-medium tracking-wide uppercase">
+              <span className="text-[9px] text-[#6B7280] font-semibold tracking-wider uppercase mt-0.5">
                 eBay Specialist
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
+          {/* Desktop Nav Items */}
+          <div className="hidden lg:flex items-center gap-1">
+            {desktopLinks.map((link) => {
+              const isActive = pathname === link.path;
               return (
                 <Link
-                  key={link.id}
-                  href={link.href}
-                  className={`px-3 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all ${
+                  key={link.path}
+                  href={link.path}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 ${
                     isActive
-                      ? "text-blue-700 bg-blue-50/80 font-semibold"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/60"
+                      ? "bg-[#6558F5] text-white shadow-xs font-bold"
+                      : "text-[#4B5563] hover:text-[#111827] hover:bg-[#EFEFE8]"
                   }`}
                 >
                   {link.label}
@@ -93,63 +123,82 @@ export const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Right CTA Button */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action: Let's Talk Button & Mobile Toggle */}
+          <div className="flex items-center gap-2">
             <Link
-              href="#contact"
-              className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold bg-slate-900 text-white hover:bg-blue-600 transition-all duration-200 shadow-xs hover:shadow-md hover:shadow-blue-500/20 active:scale-98"
+              href="/contact"
+              className={`hidden sm:inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 rounded-full text-xs font-bold transition-all duration-200 active:scale-98 ${
+                pathname === "/contact"
+                  ? "bg-[#111827] text-[#54D6C8] ring-2 ring-[#54D6C8]"
+                  : "bg-[#111827] text-white hover:bg-[#6558F5] shadow-xs hover:shadow-md hover:shadow-[#6558F5]/20"
+              }`}
             >
               <span>Let&apos;s Talk</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
-          </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            {/* Mobile / Tablet Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 text-[#111827] hover:bg-[#EFEFE8] rounded-xl transition-colors focus:outline-none"
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </nav>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-2 p-5 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xl animate-in slide-in-from-top-2 duration-200">
-            <div className="flex flex-col space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.id}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    activeSection === link.id
-                      ? "text-blue-700 bg-blue-50 font-semibold"
-                      : "text-slate-700 hover:text-slate-900 hover:bg-slate-50"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+          <div className="lg:hidden mt-2 p-4 sm:p-5 bg-[#F7F7F2]/98 backdrop-blur-xl rounded-3xl border border-[#E5E5DC] shadow-2xl animate-in slide-in-from-top-2 duration-200">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {navigationRoutes.map((route) => {
+                const isActive = pathname === route.path;
+                return (
+                  <Link
+                    key={route.path}
+                    href={route.path}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center justify-between p-3 rounded-2xl text-xs font-semibold transition-all ${
+                      isActive
+                        ? "bg-[#6558F5] text-white shadow-xs font-bold"
+                        : "bg-[#FFFFFF] text-[#374151] hover:bg-[#EFEFE8] border border-[#E5E5DC]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className={isActive ? "text-white" : "text-[#6558F5]"}>
+                        {getRouteIcon(route.path)}
+                      </span>
+                      <div>
+                        <span className="block text-sm font-bold leading-tight">{route.label}</span>
+                        <span className={`text-[10px] block mt-0.5 ${isActive ? "text-white/80" : "text-[#6B7280]"}`}>
+                          {route.description}
+                        </span>
+                      </div>
+                    </div>
+                    {route.badge && (
+                      <span
+                        className={`text-[9px] font-bold uppercase px-2 py-0.5 rounded-full ${
+                          isActive
+                            ? "bg-white/20 text-white"
+                            : "bg-[#EEF0FE] text-[#6558F5]"
+                        }`}
+                      >
+                        {route.badge}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-slate-100 flex flex-col gap-2">
-              <Link
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm"
-              >
-                <MessageSquareCode className="w-4 h-4" />
-                <span>Let&apos;s Work Together</span>
-              </Link>
-              <a
-                href={personalInfo.social.links.email}
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-semibold text-slate-700 hover:text-blue-700 hover:bg-blue-50/50 border border-slate-200 transition-colors"
-              >
-                <span>Direct Email: awaisbaig138@gmail.com</span>
-              </a>
+            {/* Bottom Quick Contact Strip in Mobile Menu */}
+            <div className="mt-4 pt-3 border-t border-[#E5E5DC] flex items-center justify-between text-xs text-[#6B7280]">
+              <span className="font-mono text-[11px] truncate">{personalInfo.social.links.email.replace("mailto:", "")}</span>
+              <span className="text-[10px] font-semibold text-[#0D9488] bg-[#E6FAF7] px-2 py-0.5 rounded-full border border-[#54D6C8]/40">
+                UK Sync Ready
+              </span>
             </div>
           </div>
         )}

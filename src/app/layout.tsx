@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getSiteUrl } from "@/data/siteConfig";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,7 +20,10 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Awais Baig | eBay Virtual Assistant & Store Management Specialist",
+  title: {
+    default: "Awais Baig | eBay Virtual Assistant & Store Management Specialist",
+    template: "%s | Awais Baig",
+  },
   description:
     "Professional eBay Virtual Assistant specialising in store management, product research, listing optimisation and eCommerce operations for UK and international sellers.",
   keywords: [
@@ -87,11 +93,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-GB" className="scroll-smooth bg-white text-slate-900">
+    <html lang="en-GB" className="scroll-smooth bg-[#F7F7F2] text-[#111827]">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans min-h-screen bg-white text-slate-900 flex flex-col antialiased selection:bg-blue-100 selection:text-blue-900`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans min-h-screen bg-[#F7F7F2] text-[#111827] flex flex-col antialiased selection:bg-[#6558F5] selection:text-white`}
       >
-        {children}
+        <Navbar />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

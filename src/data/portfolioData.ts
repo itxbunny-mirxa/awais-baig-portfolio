@@ -90,10 +90,24 @@ export const personalInfo: PersonalInfo = {
       whatsappNumberDisplay: "Available upon email consultation",
       whatsappPlaceholderNote: "Direct WhatsApp messaging is scheduled following initial email consultation.",
       linkedin: "https://www.linkedin.com/in/awaisbaig01",
-      facebook: "https://www.facebook.com/mirzaawais.baig.3194"
+      facebook: "https://www.facebook.com/mirzaawais.baig.3194",
+      instagram: "", // Configurable: Supply handle e.g. "https://instagram.com/awaisbaig01" when confirmed
+      snapchat: ""   // Configurable: Supply handle e.g. "https://snapchat.com/add/awaisbaig01" when confirmed
     }
   }
 };
+
+export const navigationRoutes: { path: string; label: string; description: string; badge?: string }[] = [
+  { path: "/", label: "Home", description: "Executive overview & value summary" },
+  { path: "/about", label: "About", description: "Background, ethos & UK working routine" },
+  { path: "/services", label: "Services", description: "Complete 9-service operational catalogue", badge: "9 Services" },
+  { path: "/skills", label: "Skills", description: "Core marketplace competencies" },
+  { path: "/tools", label: "Tools", description: "Software stack & verification status", badge: "Stack" },
+  { path: "/experience", label: "Experience", description: "2–3 years track record & milestones" },
+  { path: "/portfolio", label: "Portfolio", description: "5 demonstration dashboards & client work", badge: "5 Demos" },
+  { path: "/process", label: "Process", description: "6-stage working methodology" },
+  { path: "/contact", label: "Contact", description: "Direct inquiry & brief generator", badge: "Let's Talk" }
+];
 
 /**
  * =====================================================================
